@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Batch generators - Keras batchflow</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/custom.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Batch generators";
+    var mkdocs_page_input_path = "batch_generators_api.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Keras batchflow</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../user_guide/">User guide</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Examples</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../titanic_example/">basic usage</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">API</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Batch generators</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#batchgenerator-class">BatchGenerator class</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#triplet-pk-generator-class">Triplet PK Generator class</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../batch_transformers_api/">Batch transformers</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Keras batchflow</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>API &raquo;</li>
+        
+      
+    
+    <li>Batch generators</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/maxsch3/keras-batchflow/edit/master/docs/batch_generators_api.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="batch-generators">Batch generators</h1>
+<h2 id="batchgenerator-class">BatchGenerator class</h2>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>keras_batchflow.base.batch_generators.<strong>BatchGenerator</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">data</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">x_structure</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">y_structure=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">batch_transforms=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">batch_size=32</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">shuffle=True</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">train_mode=True</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">encoder_adaptor=None</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Basic batch generator. It is also a root class for all other batch generators.</p>
+<p>This batch generator is a python generator object that returns new data at each new iteration. It is built
+to b used in Keras's *_generator functions.</p>
+<p>At every new iteration, it selects small chunk of a dataset and sends it to stack of transformers specified
+at creation time. The generator makes sure that each datapoint will be selected once in one end-to-end walk</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>data</strong> - a <em>Pandas dataframe</em> containing a dataset with both x and y</li>
+<li><strong>x_structure</strong> - <em>tuple</em> or <em>list of tuples</em> - a structure describing mapping of dataframe columns to
+    pre-fitted encoders and to keras model inputs. When model has multiple inputs, keras expects
+    a list of numpy arrays as model X's. Each tuple is a mapping of a dataframe column to a relevant encoder.
+    It has format <code>('column name', encoder)</code>. If encoder is None, the column values will be converted to numpy
+    array and passed unchanged. If <code>(None, value)</code> is used, a new constant of value = <code>value</code> will be added
+    to Batch generator's output.</li>
+<li><strong>y_structure</strong> - (optional) <em>tuple</em> or <em>list of tuples</em> - a structure describing mapping of dataframe columns to
+    pre-fitted encoders and to keras model output. When model has multiple output, keras expects
+    a list of numpy arrays as model Y's. <strong>Default: None</strong>. Same rules and same format applies (see x_structure)</li>
+<li><strong>batch_transforms</strong> - (optional) <em>a single instance or list of BatchTransformer</em> - a stack of batch transformers
+    that are applied to batches before splitting to columns. These are useful when variables interact during
+    transform. For example, in feature dropout, when only one randomly selected feature out of multiple input
+    features have to be dropped. <strong>Default: None</strong></li>
+<li><strong>batch_size</strong> - (optional) <em>int</em> max length of generated batch. The last batch of a dataset can be smaller
+    if total size of dataframe is not multiple of a batch_size. <strong>Default: 32</strong></li>
+<li><strong>shuffle</strong> - (optional) <em>bool</em>, if true, the input dataframe is shuffled before each new epoch.
+    <strong>Default: False</strong></li>
+<li><strong>train_mode</strong> - (optional) <em>bool</em>. If true, both X and Y are returned, otherwise only X is returned</li>
+<li><strong>encoder_adapter</strong> - (optional) <em>str</em> or a single instance of a class derived from
+    keras_batchflow.base.batch_shapers.IEncoderAdaptor class. String values supported: 'numpy' and 'pandas'. If
+    not provided, 'numpy' is used. This parameter sets format that encoders are using. Sklearn encoders are
+    created for numpy arrays hence the default value is numpy. If your encoders require pandas format, use
+    'pandas'. Alternatively, if your encoders need some special format, create your instance derived from
+    IEncoderAdaptor class</li>
+</ul></div>
+</div>
+<h2 id="triplet-pk-generator-class">Triplet PK Generator class</h2>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>keras_batchflow.base.batch_generators.<strong>TripletPKGenerator</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">data</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">triplet_label</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">classes_in_batch</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">samples_per_class</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">x_structure</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">y_structure=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>This class implements a batch generator for generic triplet network described in this
+<a href="https://arxiv.org/abs/1703.07737">paper</a>
+TODO: add more details</p></div>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../batch_transformers_api/" class="btn btn-neutral float-right" title="Batch transformers">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../titanic_example/" class="btn btn-neutral" title="basic usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/maxsch3/keras-batchflow/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../titanic_example/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../batch_transformers_api/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
