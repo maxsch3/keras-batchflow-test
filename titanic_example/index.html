@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Basic use of Keras-batchflow on Titanic data - Keras batchflow</title>
+    <title>Basic use of Keras-batchflow with Titanic data - Keras batchflow</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Basic use of Keras-batchflow on Titanic data";
+        var mkdocs_page_name = "Basic use of Keras-batchflow with Titanic data";
         var mkdocs_page_input_path = "titanic_example.ipynb";
         var mkdocs_page_url = null;
       </script>
@@ -46,7 +46,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Examples</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Basic use of Keras-batchflow on Titanic data</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Basic use of Keras-batchflow with Titanic data</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#data-pre-processing">Data pre-processing</a>
     </li>
@@ -83,7 +83,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Examples</li>
-      <li class="breadcrumb-item active">Basic use of Keras-batchflow on Titanic data</li>
+      <li class="breadcrumb-item active">Basic use of Keras-batchflow with Titanic data</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/maxsch3/keras-batchflow/edit/master/docs/titanic_example.ipynb" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -500,8 +500,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="basic-use-of-keras-batchflow-on-titanic-data">Basic use of Keras-batchflow on Titanic data<a class="anchor-link" href="#basic-use-of-keras-batchflow-on-titanic-data">¶</a></h1><p>Below example shows the most basic use of keras batchflow for predicting survival in Titanic disaster. A well known <a href="https://www.kaggle.com/c/titanic/data">Titanic dataset</a> from <a href="https://www.kaggle.com">Kaggle</a> is used in this example</p>
-<p>This dataset has a mixture of both categorical and numeric variables which will highlight the features of keras-batchflow better.</p>
+<h1 id="basic-use-of-keras-batchflow-with-titanic-data">Basic use of Keras-batchflow with Titanic data<a class="anchor-link" href="#basic-use-of-keras-batchflow-with-titanic-data">¶</a></h1><p>Below example shows the most basic use of keras batchflow for predicting survival outcome in Titanic disaster. A well known <a href="https://www.kaggle.com/c/titanic/data">Titanic dataset</a> from <a href="https://www.kaggle.com">Kaggle</a> is used in this example</p>
+<p>This dataset has a mixture of both categorical and numeric variables which will show the features of keras-batchflow better.</p>
 </div>
 </div>
 </div>
@@ -664,7 +664,7 @@ data.shape</div>
 </thead>
 <tbody>
 <tr>
-<td>0</td>
+<th>0</th>
 <td>1</td>
 <td>0</td>
 <td>3</td>
@@ -679,7 +679,7 @@ data.shape</div>
 <td>S</td>
 </tr>
 <tr>
-<td>1</td>
+<th>1</th>
 <td>2</td>
 <td>1</td>
 <td>1</td>
@@ -694,7 +694,7 @@ data.shape</div>
 <td>C</td>
 </tr>
 <tr>
-<td>2</td>
+<th>2</th>
 <td>3</td>
 <td>1</td>
 <td>3</td>
@@ -709,7 +709,7 @@ data.shape</div>
 <td>S</td>
 </tr>
 <tr>
-<td>3</td>
+<th>3</th>
 <td>4</td>
 <td>1</td>
 <td>1</td>
@@ -724,7 +724,7 @@ data.shape</div>
 <td>S</td>
 </tr>
 <tr>
-<td>4</td>
+<th>4</th>
 <td>5</td>
 <td>0</td>
 <td>3</td>
@@ -873,10 +873,12 @@ data['Embarked'] = data['Embarked'].fillna('')</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Survived</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'Survived'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Yes'</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">'Survived'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Survived'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Survived</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'Survived'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Yes'</span>
 <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Survived</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'Survived'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'No'</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-6">data.loc[data.Survived == 1, 'Survived'] = 'Yes'
+<div class="clipboard-copy-txt" id="cell-6">data['Survived'] = data['Survived'].astype(str)
+data.loc[data.Survived == 1, 'Survived'] = 'Yes'
 data.loc[data.Survived == 0, 'Survived'] = 'No'</div>
 </div>
 </div>
@@ -928,17 +930,17 @@ data.loc[data.Survived == 0, 'Survived'] = 'No'</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 
-<span class="n">class_enc</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'Pclass'</span><span class="p">])</span>
-<span class="n">sex_enc</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">])</span>
-<span class="n">embarked_enc</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'Embarked'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
-<span class="n">surv_enc</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'Survived'</span><span class="p">])</span>
+<span class="n">class_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'Pclass'</span><span class="p">])</span>
+<span class="n">sex_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">])</span>
+<span class="n">embarked_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'Embarked'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+<span class="n">surv_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'Survived'</span><span class="p">])</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-7">from sklearn.preprocessing import LabelEncoder
 
-class_enc = LabelEncoder().fit(data['Pclass'])
-sex_enc = LabelEncoder().fit(data['Sex'])
-embarked_enc = LabelEncoder().fit(data['Embarked'].astype(str))
-surv_enc = LabelEncoder().fit(data['Survived'])</div>
+class_encoder = LabelEncoder().fit(data['Pclass'])
+sex_encoder = LabelEncoder().fit(data['Sex'])
+embarked_encoder = LabelEncoder().fit(data['Embarked'].astype(str))
+surv_encoder = LabelEncoder().fit(data['Survived'])</div>
 </div>
 </div>
 </div>
@@ -1016,16 +1018,57 @@ train_data, test_data = train_test_split(data, train_size=.85, random_state=0)</
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">keras_batchflow.batch_generator</span> <span class="kn">import</span> <span class="n">BatchGenerator</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">keras_batchflow.keras.batch_generators</span> <span class="kn">import</span> <span class="n">BatchGenerator</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-9">from keras_batchflow.keras.batch_generators import BatchGenerator</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2023-12-28 11:56:15.307931: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy for="cell-10">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">keras_batchflow.keras.batch_generators</span> <span class="kn">import</span> <span class="n">BatchGenerator</span>
 
-<span class="n">x_structure</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">'Pclass'</span><span class="p">,</span> <span class="n">class_enc</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'Sex'</span><span class="p">,</span> <span class="n">sex_enc</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'Embarked'</span><span class="p">,</span> <span class="n">embarked_enc</span><span class="p">),</span>
+<span class="n">x_structure</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s1">'Pclass'</span><span class="p">,</span> <span class="n">class_encoder</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Sex'</span><span class="p">,</span> <span class="n">sex_encoder</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Embarked'</span><span class="p">,</span> <span class="n">embarked_encoder</span><span class="p">),</span>
 <span class="c1">#     None below means no encoding will be applied and values will be passed unchanged</span>
-    <span class="p">(</span><span class="s1">'Age'</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="p">]</span>
-<span class="n">y_structure</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'Survived'</span><span class="p">,</span> <span class="n">surv_enc</span><span class="p">)</span>
+    <span class="p">(</span><span class="s1">'Age'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">y_structure</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'Survived'</span><span class="p">,</span> <span class="n">surv_encoder</span><span class="p">)</span>
 
 <span class="n">bg_train</span> <span class="o">=</span> <span class="n">BatchGenerator</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span>
                           <span class="n">x_structure</span><span class="o">=</span><span class="n">x_structure</span><span class="p">,</span>
@@ -1038,16 +1081,16 @@ train_data, test_data = train_test_split(data, train_size=.85, random_state=0)</
                          <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
                          <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-9">from keras_batchflow.batch_generator import BatchGenerator
+<div class="clipboard-copy-txt" id="cell-10">from keras_batchflow.keras.batch_generators import BatchGenerator
 
-x_structure = [
-    ('Pclass', class_enc),
-    ('Sex', sex_enc),
-    ('Embarked', embarked_enc),
+x_structure = (
+    ('Pclass', class_encoder),
+    ('Sex', sex_encoder),
+    ('Embarked', embarked_encoder),
 #     None below means no encoding will be applied and values will be passed unchanged
-    ('Age', None),
-]
-y_structure = ('Survived', surv_enc)
+    ('Age', None)
+)
+y_structure = ('Survived', surv_encoder)
 
 bg_train = BatchGenerator(train_data,
                           x_structure=x_structure,
@@ -1059,19 +1102,6 @@ bg_test = BatchGenerator(test_data,
                          y_structure=y_structure,
                          shuffle = True,
                          batch_size=8)</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>Using TensorFlow backend.
-</pre>
 </div>
 </div>
 </div>
@@ -1094,10 +1124,10 @@ bg_test = BatchGenerator(test_data,
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-10">
+<clipboard-copy for="cell-11">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -1109,7 +1139,7 @@ bg_test = BatchGenerator(test_data,
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-10">bg_test[0]</div>
+<div class="clipboard-copy-txt" id="cell-11">bg_test[0]</div>
 </div>
 </div>
 </div>
@@ -1119,42 +1149,46 @@ bg_test = BatchGenerator(test_data,
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>([array([[2],
-         [1],
-         [2],
-         [0],
-         [0],
+<pre>((array([[1],
          [0],
          [2],
-         [1]]), array([[1],
-         [1],
-         [0],
-         [0],
-         [1],
+         [2],
+         [2],
          [0],
          [1],
-         [1]]), array([[3],
+         [2]]),
+  array([[0],
          [1],
          [1],
-         [3],
-         [3],
          [1],
+         [0],
+         [1],
+         [1],
+         [1]]),
+  array([[3],
          [3],
-         [3]]), array([[14.],
+         [2],
+         [3],
+         [2],
+         [3],
+         [3],
+         [2]]),
+  array([[26.],
+         [52.],
+         [32.],
+         [20.],
+         [21.],
          [ 0.],
-         [29.],
-         [49.],
-         [60.],
-         [ 0.],
-         [25.],
-         [28.]])], array([[0],
+         [54.],
+         [ 0.]])),
+ array([[0],
         [0],
-        [1],
-        [1],
         [0],
-        [1],
+        [0],
+        [0],
+        [0],
         [0],
         [0]]))</pre>
 </div>
@@ -1185,45 +1219,6 @@ bg_test = BatchGenerator(test_data,
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy for="cell-11">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_train</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-11">bg_train.shape</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>([(1,), (1,), (1,), (1,)], (1,))</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
@@ -1237,9 +1232,9 @@ bg_test = BatchGenerator(test_data,
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_train</span><span class="o">.</span><span class="n">metadata</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_train</span><span class="o">.</span><span class="n">shapes</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-12">bg_train.metadata</div>
+<div class="clipboard-copy-txt" id="cell-12">bg_train.shapes</div>
 </div>
 </div>
 </div>
@@ -1251,7 +1246,46 @@ bg_test = BatchGenerator(test_data,
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>([{'name': 'Pclass',
+<pre>(((1,), (1,), (1,), (1,)), (1,))</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy for="cell-13">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_train</span><span class="o">.</span><span class="n">metadata</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-13">bg_train.metadata</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>(({'name': 'Pclass',
    'encoder': LabelEncoder(),
    'shape': (1,),
    'dtype': dtype('int64'),
@@ -1270,7 +1304,7 @@ bg_test = BatchGenerator(test_data,
    'encoder': None,
    'shape': (1,),
    'dtype': dtype('float64'),
-   'n_classes': None}],
+   'n_classes': None}),
  {'name': 'Survived',
   'encoder': LabelEncoder(),
   'shape': (1,),
@@ -1292,16 +1326,16 @@ bg_test = BatchGenerator(test_data,
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-13">
+<clipboard-copy for="cell-14">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -1337,7 +1371,7 @@ bg_test = BatchGenerator(test_data,
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">survived</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-13">from keras.layers import Input, Embedding, Dense, Concatenate, Lambda, Dropout
+<div class="clipboard-copy-txt" id="cell-14">from keras.layers import Input, Embedding, Dense, Concatenate, Lambda, Dropout
 from keras.models import Model
 import keras.backend as K
 
@@ -1366,21 +1400,6 @@ model = Model(inputs, survived)</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>WARNING:tensorflow:From /home/max/Code/opensource/batchflow/venv/lib/python3.7/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
-Instructions for updating:
-If using Keras pass *_constraint arguments to layers.
-</pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
@@ -1399,10 +1418,10 @@ If using Keras pass *_constraint arguments to layers.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-14">
+<clipboard-copy for="cell-15">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -1414,7 +1433,7 @@ If using Keras pass *_constraint arguments to layers.
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-14">model.summary()</div>
+<div class="clipboard-copy-txt" id="cell-15">model.summary()</div>
 </div>
 </div>
 </div>
@@ -1426,52 +1445,53 @@ If using Keras pass *_constraint arguments to layers.
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Model: "model_1"
+<pre>Model: "model"
 __________________________________________________________________________________________________
-Layer (type)                    Output Shape         Param #     Connected to                     
+ Layer (type)                Output Shape                 Param #   Connected to                  
 ==================================================================================================
-input_1 (InputLayer)            (None, 1)            0                                            
-__________________________________________________________________________________________________
-input_2 (InputLayer)            (None, 1)            0                                            
-__________________________________________________________________________________________________
-input_3 (InputLayer)            (None, 1)            0                                            
-__________________________________________________________________________________________________
-embedding_1 (Embedding)         (None, 1, 10)        30          input_1[0][0]                    
-__________________________________________________________________________________________________
-embedding_2 (Embedding)         (None, 1, 10)        20          input_2[0][0]                    
-__________________________________________________________________________________________________
-embedding_3 (Embedding)         (None, 1, 10)        40          input_3[0][0]                    
-__________________________________________________________________________________________________
-input_4 (InputLayer)            (None, 1)            0                                            
-__________________________________________________________________________________________________
-lambda_1 (Lambda)               (None, 10)           0           embedding_1[0][0]                
-__________________________________________________________________________________________________
-lambda_2 (Lambda)               (None, 10)           0           embedding_2[0][0]                
-__________________________________________________________________________________________________
-lambda_3 (Lambda)               (None, 10)           0           embedding_3[0][0]                
-__________________________________________________________________________________________________
-lambda_4 (Lambda)               (None, 1)            0           input_4[0][0]                    
-__________________________________________________________________________________________________
-concatenate_1 (Concatenate)     (None, 31)           0           lambda_1[0][0]                   
-                                                                 lambda_2[0][0]                   
-                                                                 lambda_3[0][0]                   
-                                                                 lambda_4[0][0]                   
-__________________________________________________________________________________________________
-dropout_1 (Dropout)             (None, 31)           0           concatenate_1[0][0]              
-__________________________________________________________________________________________________
-dense_1 (Dense)                 (None, 64)           2048        dropout_1[0][0]                  
-__________________________________________________________________________________________________
-dropout_2 (Dropout)             (None, 64)           0           dense_1[0][0]                    
-__________________________________________________________________________________________________
-dense_2 (Dense)                 (None, 32)           2080        dropout_2[0][0]                  
-__________________________________________________________________________________________________
-dropout_3 (Dropout)             (None, 32)           0           dense_2[0][0]                    
-__________________________________________________________________________________________________
-dense_3 (Dense)                 (None, 2)            66          dropout_3[0][0]                  
+ input_1 (InputLayer)        [(None, 1)]                  0         []                            
+                                                                                                  
+ input_2 (InputLayer)        [(None, 1)]                  0         []                            
+                                                                                                  
+ input_3 (InputLayer)        [(None, 1)]                  0         []                            
+                                                                                                  
+ embedding (Embedding)       (None, 1, 10)                30        ['input_1[0][0]']             
+                                                                                                  
+ embedding_1 (Embedding)     (None, 1, 10)                20        ['input_2[0][0]']             
+                                                                                                  
+ embedding_2 (Embedding)     (None, 1, 10)                40        ['input_3[0][0]']             
+                                                                                                  
+ input_4 (InputLayer)        [(None, 1)]                  0         []                            
+                                                                                                  
+ lambda (Lambda)             (None, 10)                   0         ['embedding[0][0]']           
+                                                                                                  
+ lambda_1 (Lambda)           (None, 10)                   0         ['embedding_1[0][0]']         
+                                                                                                  
+ lambda_2 (Lambda)           (None, 10)                   0         ['embedding_2[0][0]']         
+                                                                                                  
+ lambda_3 (Lambda)           (None, 1)                    0         ['input_4[0][0]']             
+                                                                                                  
+ concatenate (Concatenate)   (None, 31)                   0         ['lambda[0][0]',              
+                                                                     'lambda_1[0][0]',            
+                                                                     'lambda_2[0][0]',            
+                                                                     'lambda_3[0][0]']            
+                                                                                                  
+ dropout (Dropout)           (None, 31)                   0         ['concatenate[0][0]']         
+                                                                                                  
+ dense (Dense)               (None, 64)                   2048      ['dropout[0][0]']             
+                                                                                                  
+ dropout_1 (Dropout)         (None, 64)                   0         ['dense[0][0]']               
+                                                                                                  
+ dense_1 (Dense)             (None, 32)                   2080      ['dropout_1[0][0]']           
+                                                                                                  
+ dropout_2 (Dropout)         (None, 32)                   0         ['dense_1[0][0]']             
+                                                                                                  
+ dense_2 (Dense)             (None, 2)                    66        ['dropout_2[0][0]']           
+                                                                                                  
 ==================================================================================================
-Total params: 4,284
-Trainable params: 4,284
-Non-trainable params: 0
+Total params: 4284 (16.73 KB)
+Trainable params: 4284 (16.73 KB)
+Non-trainable params: 0 (0.00 Byte)
 __________________________________________________________________________________________________
 </pre>
 </div>
@@ -1496,33 +1516,6 @@ ________________________________________________________________________________
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy for="cell-15">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'adam'</span><span class="p">,</span> <span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-15">model.compile('adam', 'sparse_categorical_crossentropy', metrics=['accuracy'])</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
@@ -1536,84 +1529,11 @@ ________________________________________________________________________________
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">bg_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">bg_test</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'adam'</span><span class="p">,</span> <span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-16">model.fit_generator(bg_train, validation_data=bg_test, epochs=20)</div>
+<div class="clipboard-copy-txt" id="cell-16">model.compile('adam', 'sparse_categorical_crossentropy', metrics=['accuracy'])</div>
 </div>
 </div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>WARNING:tensorflow:From /home/max/Code/opensource/batchflow/venv/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
-
-Epoch 1/20
-95/95 [==============================] - 1s 9ms/step - loss: 1.5311 - accuracy: 0.6341 - val_loss: 0.6441 - val_accuracy: 0.6119
-Epoch 2/20
-95/95 [==============================] - 1s 6ms/step - loss: 1.0748 - accuracy: 0.6407 - val_loss: 0.6085 - val_accuracy: 0.6940
-Epoch 3/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.8298 - accuracy: 0.6301 - val_loss: 0.6158 - val_accuracy: 0.7313
-Epoch 4/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.6777 - accuracy: 0.6658 - val_loss: 0.6798 - val_accuracy: 0.5299
-Epoch 5/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.6309 - accuracy: 0.6896 - val_loss: 0.7950 - val_accuracy: 0.8060
-Epoch 6/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.6218 - accuracy: 0.6777 - val_loss: 0.6781 - val_accuracy: 0.6194
-Epoch 7/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5868 - accuracy: 0.7067 - val_loss: 0.4251 - val_accuracy: 0.7985
-Epoch 8/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5782 - accuracy: 0.7054 - val_loss: 0.5653 - val_accuracy: 0.7836
-Epoch 9/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5942 - accuracy: 0.6843 - val_loss: 0.7265 - val_accuracy: 0.7985
-Epoch 10/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5785 - accuracy: 0.7133 - val_loss: 0.8065 - val_accuracy: 0.8134
-Epoch 11/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5595 - accuracy: 0.7133 - val_loss: 0.3281 - val_accuracy: 0.7836
-Epoch 12/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5611 - accuracy: 0.7464 - val_loss: 0.4726 - val_accuracy: 0.7985
-Epoch 13/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5306 - accuracy: 0.7517 - val_loss: 0.3634 - val_accuracy: 0.7910
-Epoch 14/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5062 - accuracy: 0.7688 - val_loss: 0.6800 - val_accuracy: 0.8060
-Epoch 15/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5155 - accuracy: 0.7649 - val_loss: 0.4450 - val_accuracy: 0.8060
-Epoch 16/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.4949 - accuracy: 0.7820 - val_loss: 0.4729 - val_accuracy: 0.7836
-Epoch 17/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5027 - accuracy: 0.7926 - val_loss: 0.6071 - val_accuracy: 0.7836
-Epoch 18/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.5295 - accuracy: 0.7688 - val_loss: 0.7283 - val_accuracy: 0.8134
-Epoch 19/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.4824 - accuracy: 0.7834 - val_loss: 0.6828 - val_accuracy: 0.8134
-Epoch 20/20
-95/95 [==============================] - 1s 6ms/step - loss: 0.4916 - accuracy: 0.7768 - val_loss: 0.3909 - val_accuracy: 0.8134
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;keras.callbacks.callbacks.History at 0x7fe9008f8890&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The model is trained. The next question is how to use it to predict labels in new data?</p>
-<h2 id="predicting-using-the-keras-batchflow">Predicting using the keras-batchflow<a class="anchor-link" href="#predicting-using-the-keras-batchflow">¶</a></h2><p>Predicting using the same structures is really simple: once new data are in the same format as your training data, you will just need to define a batch generator for predictions using same <code>x_structure</code> that you used above</p>
-<p>I will continue my example to show how it works:</p>
 </div>
 </div>
 </div>
@@ -1636,10 +1556,88 @@ Epoch 20/20
 </div>
 </clipboard-copy>
 </div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">bg_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">bg_test</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-17">model.fit(bg_train, validation_data=bg_test, epochs=10)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Epoch 1/10
+95/95 [==============================] - 2s 9ms/step - loss: 1.9813 - accuracy: 0.7213 - val_loss: 0.7945 - val_accuracy: 1.0000
+Epoch 2/10
+95/95 [==============================] - 1s 8ms/step - loss: 1.0991 - accuracy: 0.7635 - val_loss: 0.6878 - val_accuracy: 0.9776
+Epoch 3/10
+95/95 [==============================] - 1s 8ms/step - loss: 0.7966 - accuracy: 0.6948 - val_loss: 0.6452 - val_accuracy: 0.9701
+Epoch 4/10
+95/95 [==============================] - 1s 7ms/step - loss: 0.7250 - accuracy: 0.6856 - val_loss: 0.6561 - val_accuracy: 0.9701
+Epoch 5/10
+95/95 [==============================] - 1s 7ms/step - loss: 0.6290 - accuracy: 0.7107 - val_loss: 0.6592 - val_accuracy: 0.9701
+Epoch 6/10
+95/95 [==============================] - 1s 7ms/step - loss: 0.6056 - accuracy: 0.7226 - val_loss: 0.6525 - val_accuracy: 0.8134
+Epoch 7/10
+95/95 [==============================] - 1s 7ms/step - loss: 0.5784 - accuracy: 0.7239 - val_loss: 0.6482 - val_accuracy: 0.9478
+Epoch 8/10
+95/95 [==============================] - 1s 7ms/step - loss: 0.5919 - accuracy: 0.7464 - val_loss: 0.6352 - val_accuracy: 0.9552
+Epoch 9/10
+95/95 [==============================] - 1s 7ms/step - loss: 0.5845 - accuracy: 0.7583 - val_loss: 0.6203 - val_accuracy: 0.9030
+Epoch 10/10
+95/95 [==============================] - 1s 7ms/step - loss: 0.5652 - accuracy: 0.7239 - val_loss: 0.5805 - val_accuracy: 0.8955
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;keras.src.callbacks.History at 0x7f4c89194a60&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The model is now trained. The next question is how to use it to predict labels in new data?</p>
+<h2 id="predicting-using-the-keras-batchflow">Predicting using the keras-batchflow<a class="anchor-link" href="#predicting-using-the-keras-batchflow">¶</a></h2><p>Predicting using the same structures is really simple: once new data are in the same format as your training data, you will just need to define a batch generator for predictions using same <code>x_structure</code> that you used above</p>
+<p>I will continue my example to show how it works:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy for="cell-18">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">unlabelled_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/titanic/test.csv'</span><span class="p">)</span>
 <span class="n">unlabelled_data</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-17">unlabelled_data = pd.read_csv('../data/titanic/test.csv')
+<div class="clipboard-copy-txt" id="cell-18">unlabelled_data = pd.read_csv('../data/titanic/test.csv')
 unlabelled_data.shape</div>
 </div>
 </div>
@@ -1650,7 +1648,7 @@ unlabelled_data.shape</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(418, 11)</pre>
 </div>
@@ -1675,10 +1673,10 @@ unlabelled_data.shape</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-18">
+<clipboard-copy for="cell-19">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -1690,7 +1688,7 @@ unlabelled_data.shape</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">unlabelled_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-18">unlabelled_data.head()</div>
+<div class="clipboard-copy-txt" id="cell-19">unlabelled_data.head()</div>
 </div>
 </div>
 </div>
@@ -1700,7 +1698,7 @@ unlabelled_data.shape</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -1735,7 +1733,7 @@ unlabelled_data.shape</div>
 </thead>
 <tbody>
 <tr>
-<td>0</td>
+<th>0</th>
 <td>892</td>
 <td>3</td>
 <td>Kelly, Mr. James</td>
@@ -1749,7 +1747,7 @@ unlabelled_data.shape</div>
 <td>Q</td>
 </tr>
 <tr>
-<td>1</td>
+<th>1</th>
 <td>893</td>
 <td>3</td>
 <td>Wilkes, Mrs. James (Ellen Needs)</td>
@@ -1763,7 +1761,7 @@ unlabelled_data.shape</div>
 <td>S</td>
 </tr>
 <tr>
-<td>2</td>
+<th>2</th>
 <td>894</td>
 <td>2</td>
 <td>Myles, Mr. Thomas Francis</td>
@@ -1777,7 +1775,7 @@ unlabelled_data.shape</div>
 <td>Q</td>
 </tr>
 <tr>
-<td>3</td>
+<th>3</th>
 <td>895</td>
 <td>3</td>
 <td>Wirz, Mr. Albert</td>
@@ -1791,7 +1789,7 @@ unlabelled_data.shape</div>
 <td>S</td>
 </tr>
 <tr>
-<td>4</td>
+<th>4</th>
 <td>896</td>
 <td>3</td>
 <td>Hirvonen, Mrs. Alexander (Helga E Lindqvist)</td>
@@ -1818,49 +1816,6 @@ unlabelled_data.shape</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy for="cell-19">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">unlabelled_data</span><span class="p">[[</span><span class="s1">'Pclass'</span><span class="p">,</span> <span class="s1">'Sex'</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Embarked'</span><span class="p">]]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-19">unlabelled_data[['Pclass', 'Sex', 'Age', 'Embarked']].isna().apply(sum)</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>Pclass       0
-Sex          0
-Age         86
-Embarked     0
-dtype: int64</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
@@ -1874,22 +1829,27 @@ dtype: int64</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">unlabelled_data</span><span class="p">[</span><span class="s1">'Age'</span><span class="p">]</span> <span class="o">=</span> <span class="n">unlabelled_data</span><span class="p">[</span><span class="s1">'Age'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">unlabelled_data</span><span class="p">[[</span><span class="s1">'Pclass'</span><span class="p">,</span> <span class="s1">'Sex'</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Embarked'</span><span class="p">]]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-20">unlabelled_data['Age'] = unlabelled_data['Age'].fillna(0)</div>
+<div class="clipboard-copy-txt" id="cell-20">unlabelled_data[['Pclass', 'Sex', 'Age', 'Embarked']].isna().apply(sum)</div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>Pclass       0
+Sex          0
+Age         86
+Embarked     0
+dtype: int64</pre>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>I can define a batch generator for predicting using the same structure I used in definition of batch generators used for training. The key is to set <code>shuffle=False</code>, drop <code>y_structure</code> and provide new unlabelled data</p>
 </div>
 </div>
 </div>
@@ -1912,22 +1872,27 @@ dtype: int64</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_predict</span> <span class="o">=</span> <span class="n">BatchGenerator</span><span class="p">(</span><span class="n">unlabelled_data</span><span class="p">,</span>
-                            <span class="n">x_structure</span><span class="o">=</span><span class="n">x_structure</span><span class="p">,</span>
-                            <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                            <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">unlabelled_data</span><span class="p">[</span><span class="s1">'Age'</span><span class="p">]</span> <span class="o">=</span> <span class="n">unlabelled_data</span><span class="p">[</span><span class="s1">'Age'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-21">bg_predict = BatchGenerator(unlabelled_data,
-                            x_structure=x_structure,
-                            shuffle = False,
-                            batch_size=8)</div>
+<div class="clipboard-copy-txt" id="cell-21">unlabelled_data['Age'] = unlabelled_data['Age'].fillna(0)</div>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>I can define a batch generator for predicting using the same structure I used in definition of batch generators used for training. The key is to set <code>shuffle=False</code>, drop <code>y_structure</code> and provide new unlabelled data</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1945,22 +1910,15 @@ dtype: int64</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_generator</span><span class="p">(</span><span class="n">bg_predict</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_predict</span> <span class="o">=</span> <span class="n">BatchGenerator</span><span class="p">(</span><span class="n">unlabelled_data</span><span class="p">,</span>
+                            <span class="n">x_structure</span><span class="o">=</span><span class="n">x_structure</span><span class="p">,</span>
+                            <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                            <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-22">pred = model.predict_generator(bg_predict, verbose=1)</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>53/53 [==============================] - 0s 5ms/step
-</pre>
+<div class="clipboard-copy-txt" id="cell-22">bg_predict = BatchGenerator(unlabelled_data,
+                            x_structure=x_structure,
+                            shuffle = False,
+                            batch_size=8)</div>
 </div>
 </div>
 </div>
@@ -1985,9 +1943,9 @@ dtype: int64</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_predict</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-23">pred.shape</div>
+<div class="clipboard-copy-txt" id="cell-23">bg_predict[0]</div>
 </div>
 </div>
 </div>
@@ -1998,6 +1956,116 @@ dtype: int64</pre>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>((array([[2],
+         [2],
+         [1],
+         [2],
+         [2],
+         [2],
+         [2],
+         [1]]),
+  array([[1],
+         [0],
+         [1],
+         [1],
+         [0],
+         [1],
+         [0],
+         [1]]),
+  array([[2],
+         [3],
+         [2],
+         [3],
+         [3],
+         [3],
+         [2],
+         [3]]),
+  array([[34.5],
+         [47. ],
+         [62. ],
+         [27. ],
+         [22. ],
+         [14. ],
+         [30. ],
+         [26. ]])),)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy for="cell-24">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">bg_predict</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-24">pred = model.predict(bg_predict, verbose=1)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>53/53 [==============================] - 0s 5ms/step
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy for="cell-25">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-25">pred.shape</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(418, 2)</pre>
 </div>
@@ -2022,10 +2090,10 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-24">
+<clipboard-copy for="cell-26">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2038,7 +2106,7 @@ dtype: int64</pre>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">pred</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-24">pred = pred.argmax(axis=1)
+<div class="clipboard-copy-txt" id="cell-26">pred = pred.argmax(axis=1)
 pred</div>
 </div>
 </div>
@@ -2049,27 +2117,27 @@ pred</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>array([0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0,
-       1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-       1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1,
-       1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0,
-       1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
-       0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-       0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
-       0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
-       1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0,
-       1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
-       0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0,
-       0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
-       0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
-       0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0,
-       1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0,
-       0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0,
-       1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,
-       0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0])</pre>
+<pre>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
+       0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+       0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+       0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+       0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0])</pre>
 </div>
 </div>
 </div>
@@ -2104,10 +2172,10 @@ pred</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-25">
+<clipboard-copy for="cell-27">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2119,7 +2187,7 @@ pred</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">bg_train</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-25">bg_train.inverse_transform(pred)</div>
+<div class="clipboard-copy-txt" id="cell-27">bg_train.inverse_transform(pred)</div>
 </div>
 </div>
 </div>
@@ -2129,7 +2197,7 @@ pred</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -2154,48 +2222,48 @@ pred</div>
 </thead>
 <tbody>
 <tr>
+<th>0</th>
 <td>0</td>
-<td>No</td>
 </tr>
 <tr>
-<td>1</td>
-<td>No</td>
+<th>1</th>
+<td>0</td>
 </tr>
 <tr>
-<td>2</td>
-<td>No</td>
+<th>2</th>
+<td>0</td>
 </tr>
 <tr>
-<td>3</td>
-<td>No</td>
+<th>3</th>
+<td>0</td>
 </tr>
 <tr>
-<td>4</td>
-<td>No</td>
+<th>4</th>
+<td>0</td>
 </tr>
 <tr>
+<th>...</th>
 <td>...</td>
-<td>...</td>
 </tr>
 <tr>
-<td>413</td>
-<td>No</td>
+<th>413</th>
+<td>0</td>
 </tr>
 <tr>
-<td>414</td>
-<td>Yes</td>
+<th>414</th>
+<td>0</td>
 </tr>
 <tr>
-<td>415</td>
-<td>No</td>
+<th>415</th>
+<td>0</td>
 </tr>
 <tr>
-<td>416</td>
-<td>No</td>
+<th>416</th>
+<td>0</td>
 </tr>
 <tr>
-<td>417</td>
-<td>No</td>
+<th>417</th>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -2223,10 +2291,10 @@ pred</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-26">
+<clipboard-copy for="cell-28">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2238,7 +2306,7 @@ pred</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">unlabelled_data</span><span class="p">,</span> <span class="n">bg_train</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">pred</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-26">pd.concat([unlabelled_data, bg_train.inverse_transform(pred)], axis=1).head()</div>
+<div class="clipboard-copy-txt" id="cell-28">pd.concat([unlabelled_data, bg_train.inverse_transform(pred)], axis=1).head()</div>
 </div>
 </div>
 </div>
@@ -2248,7 +2316,7 @@ pred</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -2284,7 +2352,7 @@ pred</div>
 </thead>
 <tbody>
 <tr>
-<td>0</td>
+<th>0</th>
 <td>892</td>
 <td>3</td>
 <td>Kelly, Mr. James</td>
@@ -2296,10 +2364,10 @@ pred</div>
 <td>7.8292</td>
 <td>NaN</td>
 <td>Q</td>
-<td>No</td>
+<td>0</td>
 </tr>
 <tr>
-<td>1</td>
+<th>1</th>
 <td>893</td>
 <td>3</td>
 <td>Wilkes, Mrs. James (Ellen Needs)</td>
@@ -2311,10 +2379,10 @@ pred</div>
 <td>7.0000</td>
 <td>NaN</td>
 <td>S</td>
-<td>No</td>
+<td>0</td>
 </tr>
 <tr>
-<td>2</td>
+<th>2</th>
 <td>894</td>
 <td>2</td>
 <td>Myles, Mr. Thomas Francis</td>
@@ -2326,10 +2394,10 @@ pred</div>
 <td>9.6875</td>
 <td>NaN</td>
 <td>Q</td>
-<td>No</td>
+<td>0</td>
 </tr>
 <tr>
-<td>3</td>
+<th>3</th>
 <td>895</td>
 <td>3</td>
 <td>Wirz, Mr. Albert</td>
@@ -2341,10 +2409,10 @@ pred</div>
 <td>8.6625</td>
 <td>NaN</td>
 <td>S</td>
-<td>No</td>
+<td>0</td>
 </tr>
 <tr>
-<td>4</td>
+<th>4</th>
 <td>896</td>
 <td>3</td>
 <td>Hirvonen, Mrs. Alexander (Helga E Lindqvist)</td>
@@ -2356,7 +2424,7 @@ pred</div>
 <td>12.2875</td>
 <td>NaN</td>
 <td>S</td>
-<td>No</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -2374,33 +2442,6 @@ pred</div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>That's it! This data can now be passed to applications consuming these predictions</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy for="cell-27">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-27"></div>
-</div>
-</div>
 </div>
 </div>
 </div>
