@@ -117,7 +117,7 @@ at creation time. The generator makes sure that each datapoint will be selected 
 <li><strong>shuffle</strong> - (optional) <em>bool</em>, if true, the input dataframe is shuffled before each new epoch.
     <strong>Default: False</strong></li>
 <li><strong>train_mode</strong> - (optional) <em>bool</em>. If true, both X and Y are returned, otherwise only X is returned</li>
-<li><strong>encoder_adapter</strong> - (optional) <em>str</em> or a single instance of a class derived from
+<li><strong>encoder_adaptor</strong> - (optional) <em>str</em> or a single instance of a class derived from
     keras_batchflow.base.batch_shapers.IEncoderAdaptor class. String values supported: 'numpy' and 'pandas'. If
     not provided, 'numpy' is used. This parameter sets format that encoders are using. Sklearn encoders are
     created for numpy arrays hence the default value is numpy. If your encoders require pandas format, use
