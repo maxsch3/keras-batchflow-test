@@ -130,11 +130,11 @@ datapoints are sampled in the same order as they are presented in a dataset</p>
 <span class="n">cabinclass_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">titanic_data</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">])</span>
 
 <span class="n">train_generator</span> <span class="o">=</span> <span class="n">BatchGenerator</span><span class="p">(</span><span class="n">titanic_data</span><span class="p">,</span> 
-                                 <span class="n">x_structure</span><span class="o">=</span><span class="p">[</span>
+                                 <span class="n">x_structure</span><span class="o">=</span><span class="p">(</span>
                                     <span class="p">(</span><span class="s1">&#39;Embarked&#39;</span><span class="p">,</span> <span class="n">embark_encoder</span><span class="p">),</span>
                                     <span class="p">(</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="n">cabinclass_encoder</span><span class="p">),</span>
-                                    <span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>                    
-                                 <span class="p">],</span>
+                                    <span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                                 <span class="p">),</span>
                                  <span class="n">y_structure</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
                                  <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
                                  <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>

@@ -99,12 +99,17 @@ at creation time. The generator makes sure that each datapoint will be selected 
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><strong>data</strong> - a <em>Pandas dataframe</em> containing a dataset with both x and y</li>
-<li><strong>x_structure</strong> - <em>tuple</em> or <em>list of tuples</em> - a structure describing mapping of dataframe columns to
-    pre-fitted encoders and to keras model inputs. When model has multiple inputs, keras expects
-    a list of numpy arrays as model X's. Each tuple is a mapping of a dataframe column to a relevant encoder.
-    It has format <code>('column name', encoder)</code>. If encoder is None, the column values will be converted to numpy
-    array and passed unchanged. If <code>(None, value)</code> is used, a new constant of value = <code>value</code> will be added
-    to Batch generator's output.</li>
+<li><strong>x_structure</strong> - <em>tuple</em> or <em>tuple of tuples</em> - a structure describing mapping of dataframe columns to
+    pre-fitted encoders and to keras model inputs. When model has a single input x_structure will look like
+    <code>x_structure=('column_name', encoder)</code>. When model has multiple inputs, keras expects a tuple of numpy arrays
+    as model X's. The structure will look like <code>x_structure=(('column_name1', encoder1), ('column_name2', encoder2)</code>
+    If encoder is None, the column values will be converted to numpy array and passed unchanged. If you want to
+    add a constant to inputs or outputs, you can add tuples with <code>column_name = None</code> and constant value instead
+    of encoder, like so: <code>(None, value)</code>.
+    <strong>Example:</strong> <code>x_structure=(('column_name1', encoder1), ('column_name2', None), (None, 1)</code> - values in
+    column_name1 are encoded by encoder1, values from column_name2 are passed through unchanged, the third column
+    in the x structure will be a constant of 1. So the batch could be
+    <code>(np.array(...), np.array(...), np.array(1, 1, ...))</code></li>
 <li><strong>y_structure</strong> - (optional) <em>tuple</em> or <em>list of tuples</em> - a structure describing mapping of dataframe columns to
     pre-fitted encoders and to keras model output. When model has multiple output, keras expects
     a list of numpy arrays as model Y's. <strong>Default: None</strong>. Same rules and same format applies (see x_structure)</li>

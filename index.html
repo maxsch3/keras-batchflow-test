@@ -115,7 +115,7 @@ scenarios by just mixing library objects. </p>
 <span class="c1"># define a batch generator</span>
 <span class="n">train_gen</span> <span class="o">=</span> <span class="n">BatchGenerator</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span>
-    <span class="n">x_structure</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;var1&#39;</span><span class="p">,</span> <span class="n">var1_enc</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;var2&#39;</span><span class="p">,</span> <span class="n">var2_enc</span><span class="p">)],</span>
+    <span class="n">x_structure</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;var1&#39;</span><span class="p">,</span> <span class="n">var1_enc</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;var2&#39;</span><span class="p">,</span> <span class="n">var2_enc</span><span class="p">)),</span>
     <span class="n">y_structure</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">label_enc</span><span class="p">),</span>
     <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
     <span class="n">train_mode</span><span class="o">=</span><span class="kc">True</span>
@@ -124,7 +124,7 @@ scenarios by just mixing library objects. </p>
 
 <p>The generator returns batches of format (x_structure, y_structure) and the shape of the batches is:</p>
 <div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">train_gen</span><span class="o">.</span><span class="n">shape</span>
-<span class="p">([(</span><span class="kc">None</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">)],</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">(((</span><span class="kc">None</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">)),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </code></pre></div>
 
 <p>The first element is a x_structure and it is a list if two inputs. Both of them are outputs of LabelEncoders, that
@@ -207,5 +207,5 @@ pip install git+https://github.com/maxsch3/keras-batchflow.git</code></p>
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2024-12-01 08:42:08.275607+00:00
+Build Date UTC : 2024-12-01 09:46:37.978044+00:00
 -->
